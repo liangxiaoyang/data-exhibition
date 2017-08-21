@@ -1,0 +1,475 @@
+
+/*全局*/
+*{
+	margin:0;
+	padding:0;
+	border:0;
+	list-style:none;
+	text-decoration:none;
+	font-family:"微软雅黑";
+	/*color:#FFFFFF; */
+	font-size: 10px;
+	z-index:0;
+}
+body {
+	/*min-width: 1344px;*/
+	min-width: 900px;
+	width:100%;
+	min-height:500px;
+	height:100%;
+	white-space:nowrap;
+}
+/* 整个body是个大div */
+#all {
+	position: relative;
+	width:100%;
+	height:100%; 
+	background: url("../css/back6.jpg");
+	background-size:cover;
+	/*background:url("../css/bagc.gif") no-repeat;
+	background-size:cover;
+	opacity:0.5;*/
+}
+/* 1 头部 */
+#header {
+	vertical-align:top;
+	position:relative;
+	width: 100%;
+	height:100%
+}
+
+/* 2 中间大块 */
+#wrap{
+	position:relative;
+	overflow:hidden;
+	/*top: 50px; */
+	width:100%;
+	height:100%;
+} 
+/* 2.1 中间大块的左边 */
+#m_left{float:left; width:22%; margin: 25px 0px 0px 0px; }
+#left_mid { 
+	/*border: 1px solid blue; */
+    margin: 0px 0px 0px 6px;
+    padding: 3.5px 0px 4px 6px;
+    position: relative;
+	width: 96%;
+	height: 270px;
+	border-radius: 0px;
+	border:1px solid #0066c1;
+	background: #09264d;
+	opacity:0.6;
+	color: #FFFFFF;
+}
+#left_top_title,#left_mid_title,#left_bottom_title{
+	height:12%;
+	border-bottom:1px solid #0066c1;
+	margin:0px 0px 0px -8px;
+	width:103%;
+	vertical-align:middle;
+}
+#right_top_title,#right_mid_title,#right_bottom_title{
+	height:12%;
+	border-bottom:1px solid #0066c1;
+	margin:0px 0px 0px -5px;
+	width:102%;
+	vertical-align:middle;
+}
+#left_top_data,#left_mid_data,#left_bottom_data,#right_top_data,#right_mid_data,#right_bottom_data{
+	height:88%;
+	width:100%;
+	background-color: #09264d;
+	opacity:1;
+}
+#right_mid{
+	margin: 0px 0px 0px 6px;
+    padding: 4px 0px 4px 4px;
+    position: relative;
+	width: 96%;
+	height: 270px;
+	border-radius: 0px;
+	border:1px solid #0066c1;
+	background: #09264d;
+	opacity:0.6;
+	color: #FFFFFF;
+}
+#left_bottom{
+	margin: 5px 0px 5px 6px;
+    padding: 5px 0px 5px 6px;
+    position: relative;
+	width: 96%;
+	height: 270px;
+	border-radius: 0px;
+	border:1px solid #0066c1;
+	background: #09264d;
+	opacity:0.6;
+	color: #FFFFFF;
+}
+#right_bottom{
+	margin: 5px 0px 5px 6px;
+    padding: 4px 0px 5px 4px;
+    position: relative;
+	width: 96%;
+	height: 270px;
+	border-radius: 0px;
+	border:1px solid #0066c1;
+	background: #09264d;
+	/*background-color: #09264d;*/
+	opacity:0.6;
+	color: #FFFFFF;
+}
+#left_top{
+	margin: 1px 0px 5px 6px;
+    padding: 3px 0px 2px 6px;
+    position: relative;
+	width: 96%;
+	height: 250px;
+	border-radius: 0px;
+	border:1px solid #0066c1;
+	background: #09264d;
+	opacity:0.6;
+	color: #FFFFFF;
+}
+#right_top{
+	margin: 1px 0px 5px 6px;
+    padding: 3px 0px 3px 4px;
+    position: relative;
+	width: 96%;
+	height: 250px;
+	border-radius: 0px;
+	border:1px solid #0066c1;
+	background: #09264d;
+	opacity:0.6;
+	color: #FFFFFF;
+}
+#right_bottom a{position:absolute;top:0px;left:0px;color:#fF1;font-weight:bold;padding:3px 6px;}
+#right_bottom a:hover{border:1px solid #eee;background:#000;border-radius:5px;}
+
+/* 2.2 中间大块的中央 */
+#m_center{float:left; width:55%; margin: 5px 0px 1px 5px;} 
+/* 2.3 中间大块的右边 */
+#m_right{float:left; width:22%; margin: 25px auto 0px 1px;}  
+
+#mtCanvas{
+	margin-left: 50px;
+	margin-top:20px;
+}
+
+/* 2.2.1 中间大块中央的题目, 显示标题 */
+#mc_title {
+	vertical-align:top;
+	position:relative;
+	width: 100%;
+	height:100%;
+}
+/* 2.2.2 中间大块中央的header, 显示数字的内容 */
+#mc_header {
+	/* background:url(header_bac.jpg); */
+	position: relative;
+	margin: 5px auto;
+	height: 48px;
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+	text-transform: uppercase;
+	border-radius: 5px;
+	/*background: linear-gradient(to bottom, #8F8F8F 0%,#036588 40%,#036588 50%,#036588 60%,#8F8F8F 100%);*/
+	z-index:10;
+}
+div{ word-wrap: break-word; word-break: normal;}
+.header_k1 {
+	float: left;
+	color: #CFCFCF;
+	font-size: 16px;
+	/*text-shadow: 0 8px 9px #c4b59d, 0px -1px 1px #fff;*/
+	font-weight: normal;
+	position: relative;
+	top: 15%;
+	left: 11%;
+	width: 120px;
+}
+.header_v1 {
+	float: left;
+	/*text-shadow: 0 8px 9px #c4b59d, 0px -1px 1px #fff;*/
+	font-weight: normal;
+	position: relative;
+	top: 10%;
+	left: 12%;
+	width: 200px;
+}
+.header_v1 *{
+	color: #eee;
+	font-size: 16px;
+}
+.header_k2 {
+	float: left;
+	color: #CFCFCF;
+	font-size: 16px;
+	/*text-shadow: 0 8px 9px #c4b59d, 0px -1px 1px #fff;*/
+	font-weight: bold;
+	position: relative;
+	top: 25%;
+	left: 8%;
+	width: 90px;
+}
+.header_v2 {
+	float: left;
+	/*text-shadow: 0 8px 9px #c4b59d, 0px -1px 1px #fff;*/
+	font-weight: bold;
+	position: relative;
+	top: 20%;
+	left: 8%;
+	width: 240px;
+}
+.header_v2  *{
+	color: #eee;
+	font-size: 18px;
+}
+.header_k3 {
+	float: left;
+	color: #CFCFCF;
+	font-size: 16px;
+	/*text-shadow: 0 8px 9px #c4b59d, 0px -1px 1px #fff;*/
+	font-weight: normal;
+	position: relative;
+	top: 15%;
+	left: 16%;
+	width: 90px;
+}
+.header_v3 {
+	float: left;
+	/*text-shadow: 0 8px 9px #c4b59d, 0px -1px 1px #fff;*/
+	font-weight: normal;
+	position: relative;
+	top: 10%;
+	left: 16%;
+	width: 180px;
+}
+.header_v3  *{
+	color: #eee;
+	font-size: 16px;
+}
+
+/* 2.2.3 首页滚动 */
+#gla{
+	overflow:hidden;
+	margin-top:20px;
+	position:relative;
+	/* background:url(gla_bac.png); */
+	height:440px;
+}
+
+#gla_box{
+	width:100%;
+	margin:auto;
+}
+.gla_inbox{
+	width:650px;
+	opacity:0.7;
+	overflow:hidden;
+	position:relative;
+	border:1px solid #0163BE;
+}
+#DATA p{
+	text-align:center;
+	font-size:18px;
+	width:100%;
+	color:#eee;
+	opacity:0.6;
+	line-height:30px;
+}
+
+#gla_inbox1, #gla_inbox2{
+	width:650px;
+	height:410px;
+}
+#gla_inbox3{
+	width:650px;
+	height:330px;
+}
+
+.roundabout-holder {
+	height: 360px;
+	width: 750px;
+}
+.roundabout-moveable-item {
+	display:block;
+	height: 300px;
+	width: 500px;;
+	cursor: pointer;
+}
+.roundabout-in-focus {
+	cursor: auto;
+}
+
+
+#box3D div{
+	background-size:cover; 
+}
+
+
+/* 2.2.4 中间大块中央的底部 */
+/*#rotatediv {
+	text-align:center;
+	clear: both;
+	margin-bottom:0px;
+	height:270px;
+	width:100%;
+	opacity: 0.95;  
+	z-index: 12; 
+	-webkit-transform: scaleZ(5) rotateX(45deg);
+    -moz-transform: scaleZ(5) rotateX(45deg);
+    -ms-transform: scaleZ(5) rotateX(45deg);
+    -o-transform: scaleZ(5) rotateX(45deg);
+    transform: scaleZ(5) rotateX(45deg);
+}*/
+
+#rotatediv{
+	padding:5px 0 5px;
+	margin: 28px 0px 1px 2.5px;
+	position: relative; 
+	left: 0px;  
+	width: 100%; 
+	height: 270px; 
+	background: #09264d;
+	border:1px solid #0066c1; 
+	z-index: 0;
+	opacity:0.6
+}
+#rotatediv_left{
+	float:left;
+	width:20%;
+	height:95%;
+	margin:5px 0 5px 5px;
+	position:relative;
+}
+#rotatediv_top{
+	width:95%;
+	height:31%;
+	margin:5px 0 5px 5px;
+	position:relative;
+	border:1px solid #0066c1;
+}
+#gaugetop_left{
+	height:100%;
+	width:50%;
+	position:relative;
+	float:left;
+}
+#gaugetop_right{
+	height:100%;
+	width:50%;
+	position:relative;
+	float:left;
+	color:#0066c1;
+}
+#rotatediv_mid{
+	width:95%;
+	height:31%;
+	margin:8px 0 5px 5px;
+	position:relative;
+	border:1px solid #0066c1;
+}
+#gaugemid_left{
+	height:100%;
+	width:50%;
+	position:relative;
+	float:left;
+}
+#gaugemid_right{
+	height:100%;
+	width:50%;
+	position:relative;
+	float:left;
+	color:#0066c1;
+}
+#rotatediv_bottom{
+	width:95%;
+	height:30%;
+	margin:8px 0 5px 5px;
+	position:relative;
+	border:1px solid #0066c1;
+}
+#gaugebottom_left{
+	height:100%;
+	width:50%;
+	position:relative;
+	float:left;
+}
+#gaugebottom_right{
+	height:100%;
+	width:50%;
+	position:relative;
+	float:left;
+	color:#0066c1;
+}
+#rotatediv_center {
+	float:left;
+	width:35%;
+	height:95%;
+	margin:10px 0 0px 5px;
+	position:relative;
+	border:1px solid #0066c1;
+}
+#rotatediv_right {
+	float:left;
+	width:40%;
+	height:95%;
+	margin:5px 0 5px 5px;
+	position:relative;
+	/*border:1px solid #eee;*/
+}
+#bottomdiv_left{
+	float:left;
+	width:75%;
+	height:95%;
+	margin:5px 0 5px 5px;
+	position:relative;
+}
+#bottomdiv_right{
+	float:left;
+	width:20%;
+	height:95%;
+	margin:5px 0 5px 0px;
+	position:relative;
+	
+}
+#bottomdiv_top{
+	float:left;
+	width:95%;
+	height:25%;
+	margin:5px 0 5px 0px;
+	position:relative;
+	border:1px solid #0066c1;
+	color:#0066c1;
+	font-size:6px;
+	/*background:url("../css/2.png");
+	background-size: cover;*/
+	/*width: 100%;*/
+	
+}
+#bottomdiv_bottom{
+	float:left;
+	width:95%;
+	height:25%;
+	margin-top:150%;
+	position:relative;
+	border:1px solid #0066c1;
+	color:#0066c1;
+	font-size:6px;
+}
+
+/*视频背景*/
+video#bgvid { 
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto; 
+  height: auto; 
+  z-index: -100;
+  background: url(polina.jpg) no-repeat;
+  background-size: cover;
+  opacity:0.1;
+
+}
+

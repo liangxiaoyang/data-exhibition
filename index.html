@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>迈科网络业务单元大屏展示</title>
+	<!--页面定时刷新-->
+	<meta http-equiv="refresh" content="2000">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">  
+    <link type="text/css" rel="stylesheet" href="css/index.css" />
+	<link type="text/css" rel="stylesheet" href="css/jquery.flipster.css"/>
+	<link type="text/css" rel="stylesheet" href="css/odometer-theme-train-station.css" />
+	<link rel="stylesheet" type="text/css" href="css/jqcloud.css" />
+    <!--
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    -->
+	<script type="text/javascript" src="js/jquery-1.8.0.js"></script>
+	<script type="text/javascript" src="js/jquery.corner.js"></script>
+    <!--<script type="text/javascript" src="js/jquery.roundabout.js"></script>
+    <script type="text/javascript" src="js/jquery.roundabout-shapes.js"></script>-->
+    
+
+	<script type="text/javascript" src="js/odometer.js"></script>
+	<!--<script type="text/javascript" src="js/turningball.js"></script>-->
+	<script type="text/javascript" src="js/echarts.js"></script>
+	<script type="text/javascript" src="js/chart/china.js"></script>
+	<script type="text/javascript" src="js/tagcanvas.min.js"></script>
+	<script type="text/javascript" src="js/jqcloud-1.0.4.js" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/chart.meter.js"></script>-->
+
+	<script type="text/javascript" src="js/acc_data.js"></script>
+	<script type="text/javascript" src="js/dpi_data_get.js"></script>
+	<script type="text/javascript" src="js/dpi_data_show.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/jquery.flipster.js"></script>
+	<script type="text/javascript">
+		
+		botopt = {
+			id: 2
+		};
+		
+		window.onload = function(){
+			init_all();
+			
+			// 取地图数据
+			get_dev_main_all();
+			
+			/* 主界面滑动界面的图形 */
+			draw_slide_main("gla_inbox1", "echart_map1", g_main.main_tg_map);
+			draw_slide_main("gla_inbox2", "echart_map2", g_main.main_dpi_map);
+			getEcharts_scatter("gla_inbox3",g_main.main_data_bar)
+			//draw_slide_main("gla_inbox3", "3d_box");
+			/* 底部图形 */
+			getEcharts_gauge("gaugetop_left","");
+			getEcharts_gauge1("gaugemid_left","");
+			getEcharts_pie1("gaugebottom_left", "");
+			getEcharts_line3("rotatediv_center",g_description.trends_line);
+			getEcharts_gauge2("bottomdiv_left",g_description.map_right_left);
+			//文字描述
+			renew_description();
+			/* 左右六个框的图形 */
+			getEcharts_pie2("left_top_data", g_tg_info.tg_industry_info);
+			getEcharts_area("left_mid_data", g_tg_info.tg_work_time_info);
+			getEcharts_pie3("left_bottom_data", g_tg_info.tg_access_device_info);
+			getEcharts_treemap("right_top_data",g_tg_info.tg_data_flow_info);
+			getEcharts_bar1("right_mid_data", g_tg_info.tg_fluid_control_info);
+			//getEcharts_line4("right_bottom_data", g_tg_info.tg_speed_up_info);
+			
+			
+			
+			// 定时更新信息，设备数量信息
+			setInterval("renew_dev_number()",1000);
+			// 描述信息
+			setInterval("get_dev_description_all()", 10000);
+			setInterval("renew_description()", 15000);
+			// tg接口
+			setInterval("get_tg_data_all()",10000);
+			// 所有DPI插件的接口
+			setInterval("get_dpi_data_all()",10000);
+			// 数据接口
+			setInterval("get_data_data_all()",10000);
+			// 地图定时刷新获取数据
+			setInterval("get_dev_main_all()",10000);
+			//更新地图
+			var timeIn = setTimeout("renew_map_tm()",10000);
+			//window.clearInterval(timeIn); 
+			
+		};
+	</script>
+</head>
+<body>
+
+
+<div id="all">
+<div id="header"> 
+	
+</div>
+
+<!--<div id="video">
+	<video autoplay muted loop poster="polina.jpg" id="bgvid">
+		<source src="css/bagmo.mp4" type="video/mp4">
+	</video>
+</div>-->
+<div id="wrap"> 
+	<div id="m_left"> 
+		<div id="left_top">
+			<div id="left_top_title"><hr /></div>
+			<div id="left_top_data"></div>
+		</div> 
+		<div id="left_mid">
+			<div id="left_mid_title"></div>
+			<div id="left_mid_data"></div>
+		</div> 
+		<div id="left_bottom">
+			<div id="left_bottom_title"></div>
+			<div id="left_bottom_data"></div>
+		</div> 
+	</div>
+	
+	<div id="m_center">
+		<div id="mc_title">
+			<!--<svg class='no-area'>
+				<filter id='light2'>
+				<feGaussianBlur in='SourceAlpha' stdDeviation='2' result='blur'/>
+				<feSpecularLighting in='blur' surfaceScale='4' specularConstant='1' specularExponent='14' lighting-color='#eee' result='specOut'>
+				<fePointLight x='-8000' y='-10000' z='5000'/>
+				</feSpecularLighting>
+				<feComposite in='specOut' in2='SourceAlpha' operator='in' result='light'/>
+				<feComposite in='SourceGraphic' in2='light' operator='arithmetic' k1='0' k2='1' k3='1' k4='0'/>
+				</filter>
+			</svg>-->
+
+			<!--For Firefox-->
+			<style>
+				.no-area{position:absolute;width:0;height:0}
+				h1{text-align:center;position:relative;letter-spacing:.2em;font-size:2.5em;font-weight:normal;margin:0 auto}
+				h1:before,h1:after{position:absolute;top:0;left:0;right:0}
+				.bevel{font-family:微软雅黑;color:#eee;}			
+			</style>
+
+			<h1 class='bevel'>迈科网络业务单元大屏数据展示</h1> 
+		</div>
+		<div id="mc_header">
+			<div class="header_k1" id="header_k1">家庭/商用插件数</div>
+			<div class="header_v1" id="header_v1"><div id="odometer1" class="odometer">10935335</div></div>
+			<!--<div class="header_k2" id="header_k2">服务用户数</div>
+			<div class="header_v2" id="header_v2"><div id="odometer2" class="odometer">123456789</div></div>-->
+			<div class="header_k3" id="header_k3">企业设备数</div>
+			<div class="header_v3" id="header_v3"><div id="odometer3" class="odometer">2687</div></div>
+		</div>
+		<div id="gla">
+			<div id="gla_box">
+				<ul class="flip-items">
+					<li id="TG">
+						<div class="gla_inbox">
+							<div id="gla_inbox1" class="gla_inbox1"> </div>
+						</div>
+					</li>
+					
+					<li id="PlugIn">
+						<div class="gla_inbox">
+							<div id="gla_inbox2" class="gla_inbox2"> </div>
+						</div>
+					</li>
+					
+					<li id="DATA">
+						<div class="gla_inbox">
+							<p>数据分析服务</p>
+							<div id="gla_inbox3" class="gla_inbox3"> </div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div id="rotatediv" >
+			<div id="rotatediv_left">
+				<div id="rotatediv_top">
+					<div id="gaugetop_left"></div>
+					<div id="gaugetop_right">
+					</div>
+				</div>
+				<div id="rotatediv_mid">
+					<div id="gaugemid_left"></div>
+					<div id="gaugemid_right">
+					</div>
+				</div>
+				<div id="rotatediv_bottom">
+					<div id="gaugebottom_left"></div>
+					<div id="gaugebottom_right">
+					</div>
+				</div>
+			</div>
+			<div id="rotatediv_center"></div>
+			<div id="rotatediv_right">
+				<div id="bottomdiv_left"></div>
+				<div id="bottomdiv_right">
+					<div id="bottomdiv_top"></div>
+					<div id="bottomdiv_bottom"></div>
+				</div>		
+			</div>
+		</div>
+	</div> 
+  
+    <div id="m_right"> 
+		<div id="right_top">
+			<div id="right_top_title"></div>
+			<div id="right_top_data"></div>
+		</div> 
+		<div id="right_mid">
+			<div id="right_mid_title"></div>
+			<div id="right_mid_data"></div>
+		</div> 
+		<div id="right_bottom">
+			<div id="right_bottom_title"></div>
+			<div id="right_bottom_data"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	//背景播放速度设置
+    //var video= document.getElementById('bgvid');
+    //video.playbackRate = 1;
+	/*functionlaunchFullScreen(element){  
+  if(element.requestFullScreen) {  
+    element.requestFullScreen();  
+  } elseif(element.mozRequestFullScreen) {  
+    element.mozRequestFullScreen();  
+  } elseif(element.webkitRequestFullScreen) {  
+    element.webkitRequestFullScreen();  
+  }  
+}  
+// 启动全屏模式  
+launchFullScreen(document.documentElement); // 整个页面  
+launchFullScreen(document.getElementById("videoElement")); // 单独元素 */
+</script>
+
+</div>
+</body>
+
+</html>
